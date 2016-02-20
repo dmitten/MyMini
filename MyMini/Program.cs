@@ -15,7 +15,8 @@ namespace MyMini
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form1 aform = new Form1();
+            Application.Run(aform);
         }
     }
 }

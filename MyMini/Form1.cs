@@ -11,9 +11,11 @@ using XPLog;
 using Teboscreen;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MyMini
 {
+   
     public partial class Form1 : Form
     {
         string NoteText = "";
@@ -36,7 +38,7 @@ namespace MyMini
             InitializeComponent();
             watch();
         }
-       
+       [STAThread]
         private void watch()
         {
             FileSystemWatcher watcher = new FileSystemWatcher();
@@ -44,15 +46,25 @@ namespace MyMini
             watcher.NotifyFilter = NotifyFilters.LastWrite;
             watcher.Filter = "*.*";
             watcher.Changed += new FileSystemEventHandler(OnChanged);
-            watcher.EnableRaisingEvents = true;
+            watcher.EnableRaisingEvents = true;// kill on event
         }
 
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
-           logonfromfilewatcher();
+            var watcher = sender as FileSystemWatcher;
+            if (watcher != null)
+            {
+                watcher.EnableRaisingEvents = false;
+            }
+            // need to get back yo ui thread
+            this.BeginInvoke(new MethodInvoker(delegate
+            {
+                logonfromfilewatcher();
+            }));
+            
+            Thread.Sleep(10000);
             //throw new NotImplementedException();
         }
-
         private void LogOnBTN_Click(object sender, EventArgs e)
         {
 
@@ -446,9 +458,10 @@ namespace MyMini
 
 
         }
+        [STAThread]
         private void logonfromfilewatcher()
         {
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             bool laptop = false;
             if (System.Environment.MachineName.ToString().Contains("DM"))
             {
@@ -475,9 +488,9 @@ namespace MyMini
 
             m.PressKeyArrayPassword(Pass);
             Thread.Sleep(10);
-            m.AltO();
-            Thread.Sleep(200);
-            m.AltO();
+            //m.AltO();
+            //Thread.Sleep(200);
+            //m.AltO();
         }
   
         private void leftthumbtrigger_Click(object sender, EventArgs e)

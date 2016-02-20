@@ -5,15 +5,16 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 
 using System.Security.Cryptography;
+using System.Runtime.InteropServices;
 //http://www.codeproject.com/Articles/9299/Comparing-Images-using-GDI
 namespace Teboscreen
 {
-
+    
     class ScreenShot
     {
 
         public static bool saveToClipboard = false;
-
+        [STAThread]
         public static Bitmap CaptureImage(bool showCursor, Size curSize, Point curPos, Point SourcePoint, Point DestinationPoint, Rectangle SelectionRectangle, string FilePath, string extension)
         {
             if (SelectionRectangle.Width == 0 || SelectionRectangle.Height == 0) { SelectionRectangle.Height = 1; SelectionRectangle.Width = 1; }
@@ -25,8 +26,6 @@ namespace Teboscreen
                 {
 
                     g.CopyFromScreen(SourcePoint, DestinationPoint, SelectionRectangle.Size);
-
-
                 }
                 
                 Image img = (Image)bitmap;
