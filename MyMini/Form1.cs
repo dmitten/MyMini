@@ -48,7 +48,10 @@ namespace MyMini
             watcher.Changed += new FileSystemEventHandler(OnChanged);
             watcher.EnableRaisingEvents = true;// kill on event
         }
+        private void startFilewatcher()
+        {
 
+        }
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
             var watcher = sender as FileSystemWatcher;
