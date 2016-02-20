@@ -42,7 +42,7 @@ namespace MyMini
         private void watch()
         {
             FileSystemWatcher watcher = new FileSystemWatcher();
-            watcher.Path = "C:\\Users\\djmit_000\\AppData\\Local\\Packages\\2ac7d836-d159-47dc-90c5-0f42f5eb793a_4j5t8z38t883m\\LocalState";
+            watcher.Path = "C:\\Users\\dmitten\\AppData\\Local\\Packages\\2ac7d836-d159-47dc-90c5-0f42f5eb793a_4j5t8z38t883m\\LocalState";
             watcher.NotifyFilter = NotifyFilters.LastWrite;
             watcher.Filter = "*.*";
             watcher.Changed += new FileSystemEventHandler(OnChanged);
@@ -54,18 +54,18 @@ namespace MyMini
         }
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
-            var watcher = sender as FileSystemWatcher;
-            if (watcher != null)
-            {
-                watcher.EnableRaisingEvents = false;
-            }
+            
             // need to get back yo ui thread
             this.BeginInvoke(new MethodInvoker(delegate
             {
                 logonfromfilewatcher();
             }));
-            
-            Thread.Sleep(10000);
+            var watcher = sender as FileSystemWatcher;
+            if (watcher != null)
+            {
+                watcher.EnableRaisingEvents = false;
+            }
+            // Thread.Sleep();
             //throw new NotImplementedException();
         }
         private void LogOnBTN_Click(object sender, EventArgs e)
@@ -415,20 +415,21 @@ namespace MyMini
 
         private void toolStripButton1_Click(object sender, EventArgs e)//login
         {
-              bool laptop = false;
-            if (System.Environment.MachineName.ToString().Contains("DM"))
-            {
-                int iHandle = NativeWin32.FindWindow(null, "Hyperspace - URMC PRD - \\\\Remote, 128-bit SSL/TLS.");
-                NativeWin32.SetForegroundWindow(iHandle);
-                Thread.Sleep(250);
-                laptop = true;
-            }
-            else
-            {
-                int iHandle = NativeWin32.FindWindow(null, "Hyperspace - URMC PRD - \\\\Remote");
-                NativeWin32.SetForegroundWindow(iHandle);
-                Thread.Sleep(250);
-            }
+            MakeeRecordActive();
+            //  bool laptop = false;
+            //if (System.Environment.MachineName.ToString().Contains("DM"))
+            //{
+            //    int iHandle = NativeWin32.FindWindow(null, "Hyperspace - URMC PRD - \\\\Remote, 128-bit SSL/TLS.");
+            //    NativeWin32.SetForegroundWindow(iHandle);
+            //    Thread.Sleep(250);
+            //    laptop = true;
+            //}
+            //else
+            //{
+            //    int iHandle = NativeWin32.FindWindow(null, "Hyperspace - URMC PRD - \\\\Remote");
+            //    NativeWin32.SetForegroundWindow(iHandle);
+            //    Thread.Sleep(250);
+            //}
 
             MySendKeys m = new MySendKeys();
             Rectangle r = new Rectangle(445, 320, 600, 400);//
@@ -464,21 +465,23 @@ namespace MyMini
         [STAThread]
         private void logonfromfilewatcher()
         {
+            //Thread.Sleep(100);
+            MakeeRecordActive();
             //Thread.Sleep(5000);
-            bool laptop = false;
-            if (System.Environment.MachineName.ToString().Contains("DM"))
-            {
-                int iHandle = NativeWin32.FindWindow(null, "Hyperspace - URMC PRD - \\\\Remote, 128-bit SSL/TLS.");
-                NativeWin32.SetForegroundWindow(iHandle);
-                Thread.Sleep(250);
-                laptop = true;
-            }
-            else
-            {
-                int iHandle = NativeWin32.FindWindow(null, "Hyperspace - URMC PRD - \\\\Remote");
-                NativeWin32.SetForegroundWindow(iHandle);
-                Thread.Sleep(250);
-            }
+            //bool laptop = false;
+            //if (System.Environment.MachineName.ToString().Contains("DM"))
+            //{
+            //    int iHandle = NativeWin32.FindWindow(null, "Hyperspace - URMC PRD - \\\\Remote, 128-bit SSL/TLS.");
+            //    NativeWin32.SetForegroundWindow(iHandle);
+            //    Thread.Sleep(250);
+            //    laptop = true;
+            //}
+            //else
+            //{
+            //    int iHandle = NativeWin32.FindWindow(null, "Hyperspace - URMC PRD - \\\\Remote");
+            //    NativeWin32.SetForegroundWindow(iHandle);
+            //Thread.Sleep(250);
+            //}
 
             MySendKeys m = new MySendKeys();
             Rectangle r = new Rectangle(445, 320, 600, 400);//
@@ -490,7 +493,7 @@ namespace MyMini
             Thread.Sleep(100);
 
             m.PressKeyArrayPassword(Pass);
-            Thread.Sleep(10);
+            //Thread.Sleep(10);
             //m.AltO();
             //Thread.Sleep(200);
             //m.AltO();
