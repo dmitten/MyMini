@@ -15,7 +15,7 @@ namespace MyMini
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Form1 aform = new Form1();
+            URMFG aform = new URMFG();
             Application.Run(aform);
         }
     }

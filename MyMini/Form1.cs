@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace MyMini
 {
    
-    public partial class Form1 : Form
+    public partial class URMFG : Form
     {
         string NoteText = "";
         string LOS = "99213";
@@ -33,7 +33,7 @@ namespace MyMini
         private static extern void mouse_event(UInt32 dwFlags, UInt32 dx, UInt32 dy, UInt32 dwData, IntPtr dwExtraInfo);
 
 
-        public Form1()
+        public URMFG()
         {
             InitializeComponent();
             watch();
