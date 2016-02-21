@@ -642,7 +642,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(134, 118);
+            this.ClientSize = new System.Drawing.Size(162, 130);
             this.ControlBox = false;
             this.Controls.Add(this.epicmitten);
             this.Controls.Add(this.label7);

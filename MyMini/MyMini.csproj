@@ -155,11 +155,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\NewEpicLoging.bmp" />
     <Content Include="blueicon.ico" />
     <Content Include="hand copy.ico" />
+    <None Include="Resources\epicloginnamepb.Image.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\" />
     <Folder Include="Models\" />
     <Folder Include="Utils\" />
     <Folder Include="Views\" />

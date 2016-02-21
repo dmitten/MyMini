@@ -41,19 +41,16 @@ namespace MyMini
        [STAThread]
         private void watch()
         {
-            FileSystemWatcher watcher = new FileSystemWatcher();
-            //watcher.Path = "C:\\Users\\djmit_000\\AppData\\Local\\Packages\\2ac7d836-d159-47dc-90c5-0f42f5eb793a_4j5t8z38t883m\\LocalState";
+            //FileSystemWatcher watcher = new FileSystemWatcher();
+            ////watcher.Path = "C:\\Users\\djmit_000\\AppData\\Local\\Packages\\2ac7d836-d159-47dc-90c5-0f42f5eb793a_4j5t8z38t883m\\LocalState";
 
-            watcher.Path = "C:\\Users\\dmitten\\AppData\\Local\\Packages\\2ac7d836-d159-47dc-90c5-0f42f5eb793a_4j5t8z38t883m\\LocalState";
-            watcher.NotifyFilter = NotifyFilters.LastWrite;
-            watcher.Filter = "*.*";
-            watcher.Changed += new FileSystemEventHandler(OnChanged);
-            watcher.EnableRaisingEvents = true;// kill on event
+            //watcher.Path = "C:\\Users\\dmitten\\AppData\\Local\\Packages\\48304DaveMitten.MittenLog_prf20yrc9cbyp\\LocalState";
+            //watcher.NotifyFilter = NotifyFilters.LastWrite;
+            //watcher.Filter = "*.*";
+            //watcher.Changed += new FileSystemEventHandler(OnChanged);
+            //watcher.EnableRaisingEvents = true;// kill on event
         }
-        private void startFilewatcher()
-        {
-
-        }
+       
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
             
@@ -62,11 +59,12 @@ namespace MyMini
             {
                 logonfromfilewatcher();
             }));
-            var watcher = sender as FileSystemWatcher;
-            if (watcher != null)
-            {
-                watcher.EnableRaisingEvents = false;
-            }
+            //var watcher = sender as FileSystemWatcher;
+            //if (watcher != null)
+            //{
+            //    watcher.EnableRaisingEvents = false;
+            //}
+            Application.Exit();
             // Thread.Sleep();
             //throw new NotImplementedException();
         }
@@ -162,16 +160,23 @@ namespace MyMini
                 y = screen.Height;
                 //y = searchrect.Bottom;
                 if (searchrect.Bottom <= y) { y = searchrect.Bottom; }
-                int X = searchrect.Left;
-                int Y = searchrect.Top;
+                //int X = searchrect.Left;
+                //int Y = searchrect.Top;
+
+                int X = 1;
+                int Y = 1;
+                string junk = "";
+                junk = screen.GetPixel(100, 111).Name.ToString();
+                string screenstring = "";
                 Bitmap c = new Bitmap(image);
                 do// loop x
                 {
                     do
                     {
-                        if (screen.GetPixel(X, Y).Name.ToString() == startingcolor)// found start
+                         junk = screen.GetPixel(X, Y).Name.ToString();
+                        if (junk== startingcolor)// found start
                         {
-                            string screenstring = "";
+                           
                             for (int i = 0; i < image.Width; i++)
                             {
                                 screenstring += screen.GetPixel(X + i, Y).Name.ToString();
@@ -193,12 +198,12 @@ namespace MyMini
                             }
                         }
                         X++;
-                        // } while (X <= x - 15);
-                    } while (X <= x - 1);
-                    X = searchrect.Left;
-                    Y++;
-                    //} while (Y <= y - 5);   
-                } while (Y <= y - 1);
+                   // } while (X <= x - 15);
+                } while (X <= x - 1);
+                X = searchrect.Left;
+                Y++;
+          //  } while (Y <= y - 5) ;
+        } while (Y <= y - 1);
             }
             return found;
         }
@@ -434,9 +439,12 @@ namespace MyMini
             //}
 
             MySendKeys m = new MySendKeys();
-            Rectangle r = new Rectangle(445, 320, 600, 400);//
+            Rectangle r = new Rectangle(1, 1, 1500, 1000);//
             Bitmap b = new Bitmap(epicloginnamepb.Image);
-            if (FindBmp(b, r, true, 50, 0, false, true)) { Thread.Sleep(10); }
+            if (FindBmp(b, r, true, 50, 0, false, true))
+            {
+                Thread.Sleep(10);
+            }
             m.PressKeyArray(Ident);
             Thread.Sleep(10);
             m.PressKey(Keys.Tab);
@@ -486,9 +494,9 @@ namespace MyMini
             //}
 
             MySendKeys m = new MySendKeys();
-            Rectangle r = new Rectangle(445, 320, 600, 400);//
+            Rectangle r = new Rectangle(1, 1, 1000, 700);//
             Bitmap b = new Bitmap(epicloginnamepb.Image);
-            if (FindBmp(b, r, true, 50, 0, false, true)) { Thread.Sleep(10); }
+            if (FindBmp(b, r, true, 50, 0, false, true)) { Thread.Sleep(1000); }
             m.PressKeyArray(Ident);
             Thread.Sleep(10);
             m.PressKey(Keys.Tab);
