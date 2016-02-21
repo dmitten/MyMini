@@ -42,6 +42,8 @@ namespace MyMini
         private void watch()
         {
             FileSystemWatcher watcher = new FileSystemWatcher();
+            //watcher.Path = "C:\\Users\\djmit_000\\AppData\\Local\\Packages\\2ac7d836-d159-47dc-90c5-0f42f5eb793a_4j5t8z38t883m\\LocalState";
+
             watcher.Path = "C:\\Users\\dmitten\\AppData\\Local\\Packages\\2ac7d836-d159-47dc-90c5-0f42f5eb793a_4j5t8z38t883m\\LocalState";
             watcher.NotifyFilter = NotifyFilters.LastWrite;
             watcher.Filter = "*.*";
@@ -493,10 +495,10 @@ namespace MyMini
             Thread.Sleep(100);
 
             m.PressKeyArrayPassword(Pass);
-            //Thread.Sleep(10);
-            //m.AltO();
-            //Thread.Sleep(200);
-            //m.AltO();
+            Thread.Sleep(10);
+            m.AltO();
+            Thread.Sleep(200);
+            m.AltO();
         }
   
         private void leftthumbtrigger_Click(object sender, EventArgs e)
